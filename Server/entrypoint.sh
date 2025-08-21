@@ -26,6 +26,6 @@ echo "~~~ FLUSHING..."
 python manage.py flush --no-input
 echo "~~~ MIGRATING..."
 python manage.py migrate
-echo "~~~ DONE..."
+echo "~~~ DONE."
 
 exec "$@"
