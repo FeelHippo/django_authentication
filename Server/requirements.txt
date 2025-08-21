@@ -1,0 +1,4 @@
+ipython
+django==5.1.11
+psycopg2==2.9.10
+django-oauth-toolkit==3.0.1

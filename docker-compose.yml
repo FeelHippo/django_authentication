@@ -1,0 +1,23 @@
+services:
+  server:
+    build: ./Server
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Server:/usr/src/app
+    depends_on:
+      - db
+  db:
+    image: postgres:17
+    volumes:
+      - postgres_data:/var/lib/postgres/data/
+    environment:
+      - POSTGRES_USER=feelhippo
+      - POSTGRES_PASSWORD=Filippo333
+      - POSTGRES_DB=auth
+      - SQL_HOST=db
+      - SQL_PORT=5432
+
+volumes:
+  postgres_data:
