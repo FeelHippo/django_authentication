@@ -1,0 +1,4 @@
+ipython
+django==5.1.11
+django-allauth==65.11.0
+requests==2.32.5

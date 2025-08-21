@@ -22,10 +22,10 @@ then
 fi
 
 
-echo "~~~ FLUSHING..."
+echo "~~~ FLUSHING SERVER..."
 python manage.py flush --no-input
-echo "~~~ MIGRATING..."
+echo "~~~ MIGRATING SERVER..."
 python manage.py migrate
-echo "~~~ DONE."
+echo "~~~ SERVER DONE."
 
 exec "$@"

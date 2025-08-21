@@ -3,6 +3,7 @@
 [How to setup Postgresql](https://gist.github.com/NickMcSweeney/3444ce99209ee9bd9393ae6ab48599d8)
 [Create database from command line](https://stackoverflow.com/a/30642050/10708345)
 [Setup Postgres on Docker Compose](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)
+[Install libraries](https://stackoverflow.com/a/75722775/10708345)
 
 ### Commands
 - start Django app: `cd Server` and `sudo python manage.py runserver`
@@ -17,9 +18,21 @@
 - check PostgreSql tables were created in Django: `sudo docker-compose exec db psql --username=feelhippo --dbname=auth` => prompt `\l`
 - ... or `sudo docker volume inspect authentication_api_postgres_data`
 - migrate: `cd Server` and `sudo python manage.py migrate`
+### Issues
+- [ModuleNotFoundError: No module named 'oauth2_provider](https://github.com/django-oauth/django-oauth-toolkit/issues/811)
 
-### Start
+### Start Image
 ```terminaloutput
 sudo docker-compose build
 sudo docker-compose up -d
+sudo docker-compose logs -f
+```
+
+### Run locally
+- in Server/server/settings.py -> DATABASES.default -> remove HOST and PORT
+- TODO: improve this, refactor
+```terminaloutput
+    source venv/bin/activate
+    python manage.py migrate
+    python manage.py runserver 8080
 ```
