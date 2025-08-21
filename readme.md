@@ -33,6 +33,7 @@ sudo docker-compose logs -f
 - TODO: improve this, refactor
 ```terminaloutput
     source venv/bin/activate
+    [if necessary]: pip install <dep-name-here>
     python manage.py migrate
     python manage.py runserver 8080
 ```
