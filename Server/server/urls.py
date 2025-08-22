@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
+from oauth2_provider import urls as oauth2_urls
 from server.views.main import profile
 
 urlpatterns = [
@@ -13,5 +14,8 @@ urlpatterns += [
 
     # Logged-in user profile endpoint
     re_path(r'^profile/$', profile),
+
+    # Redirect route
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
 
 ]
