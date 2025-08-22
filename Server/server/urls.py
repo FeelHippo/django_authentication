@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
-from oauth2_provider import urls as oauth2_urls
-from server.views.main import profile
+
+from .rest.login_view import LoginView
+from .rest.register_view import RegisterView
+from .views.main import profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,4 +20,9 @@ urlpatterns += [
     # Redirect route
     re_path(r'^accounts/', include('django.contrib.auth.urls')),
 
+]
+
+urlpatterns += [
+    path('login/', LoginView.as_view()),
+    path('register/', RegisterView.as_view()),
 ]

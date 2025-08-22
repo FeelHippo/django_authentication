@@ -2,3 +2,6 @@ ipython
 django==5.1.11
 psycopg2==2.9.10
 django-oauth-toolkit==3.0.1
+python-social-auth==0.3.6
+social-auth-app-django==5.5.1
+djangorestframework==3.16.1

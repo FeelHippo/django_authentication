@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+# https://stackoverflow.com/a/34115677/10708345
+import django
+django.setup()
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,11 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oauth2_provider',
+    # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#register-the-application
+    'social_django',
+    'rest_framework',
+    'rest_framework.authtoken',
+    # https://stackoverflow.com/questions/26914022/auth-user-model-refers-to-model-that-has-not-been-installed
+    'server',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware', # to check for tokens in requests
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -51,6 +61,19 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'server.urls'
+AUTH_USER_MODEL = 'server.CustomUser'
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+ # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#database
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 TEMPLATES = [
     {
