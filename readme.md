@@ -4,7 +4,8 @@
 [Create database from command line](https://stackoverflow.com/a/30642050/10708345)
 [Setup Postgres on Docker Compose](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)
 [Install libraries](https://stackoverflow.com/a/75722775/10708345)
-[Oauth2 with storage](https://codezup.com/implementing-oauth2-authentication-django-guide/)
+[Oauth2 with storage](https://codezup.com/implementing-oauth2-authentication-django-guide/) (it's pretty bad, but a good start)
+[TokenAuthentication docs](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication)
 
 ### Commands
 - start Django app: `cd Server` and `sudo python manage.py runserver`
@@ -24,6 +25,7 @@
 
 ### Walk Through
 ```terminaloutput
+sudo systemctl start docker
 sudo docker-compose build
 sudo docker-compose up -d
 sudo docker-compose logs -f
@@ -63,6 +65,7 @@ the server will allow our client app to request whatever it needs to authenticat
 ```terminaloutput
     source venv/bin/activate
     [if necessary]: pip install <dep-name-here>
+    python manage.py makemigrations
     python manage.py migrate
     python manage.py runserver 8080
 ```
