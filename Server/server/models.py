@@ -1,6 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
-class CustomUser(models.Model):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=200, unique=True)
     password = models.CharField(max_length=200)
     first_name = models.CharField(max_length=200)
@@ -8,13 +9,7 @@ class CustomUser(models.Model):
 
     REQUIRED_FIELDS = []
     USERNAME_FIELD = "email"
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_anonymous = models.BooleanField(default=False)
     is_authenticated = models.BooleanField(default=False)
-
-    # https://docs.djangoproject.com/en/5.1/ref/models/instances/#django.db.models.Model.__str__
-    def __str__(self):
-        return CustomUser(
-            email=self.email,
-            first_name=self.first_name,
-            last_name=self.last_name
-        )
