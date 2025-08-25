@@ -21,13 +21,16 @@ then
     echo "PostgreSQL started"
 fi
 
-
+# https://forum.djangoproject.com/t/users-customuser-does-not-exist/9951/3
+# TODO: "The migration files should be part of your source being used to create the container."
 echo "~~~ FLUSHING SERVER..."
 python manage.py flush --no-input
 echo "~~~ MAKING MIGRATIONS SERVER..."
 python manage.py makemigrations
 echo "~~~ MIGRATING SERVER..."
 python manage.py migrate
+echo "~~~ SHOWING MIGRATIONS SERVER..."
+python manage.py showmigrations
 echo "~~~ SERVER DONE."
 
 exec "$@"

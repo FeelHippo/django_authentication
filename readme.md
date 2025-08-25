@@ -1,11 +1,13 @@
 [Server Client Oauth2.0 Tutorial](https://raphaelyancey.fr/en/2018/05/28/setting-up-django-oauth2-server-client.html)
     - [Repository](https://github.com/raphaelyancey/django-oauth2-example)
 [How to setup Postgresql](https://gist.github.com/NickMcSweeney/3444ce99209ee9bd9393ae6ab48599d8)
-[Create database from command line](https://stackoverflow.com/a/30642050/10708345)
+[Create database from command line](https://stackoverflow.com/a/30642050/10708345) and [more](https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django)
+[Setup Postgres in Django](https://www.hostinger.com/in/tutorials/django-models-and-databases)
 [Setup Postgres on Docker Compose](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)
 [Install libraries](https://stackoverflow.com/a/75722775/10708345)
 [Oauth2 with storage](https://codezup.com/implementing-oauth2-authentication-django-guide/) (it's pretty bad, but a good start)
-[TokenAuthentication docs](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication)
+[TokenAuthentication docs](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication) and [more](https://medium.com/@arrosid/how-to-create-token-based-authentication-in-django-rest-framework-part-2-b40c18468fab)
+[Django Best Practices: Referencing the User Model](https://learndjango.com/tutorials/django-best-practices-referencing-user-model)
 
 ### Commands
 - start Django app: `cd Server` and `sudo python manage.py runserver`
@@ -26,8 +28,7 @@
 ### Walk Through
 ```terminaloutput
 sudo systemctl start docker
-sudo docker-compose build
-sudo docker-compose up -d
+sudo docker-compose up -d --build --remove-orphans --force-recreate
 sudo docker-compose logs -f
 ```
 Once the above all works, create a superuser:
@@ -62,6 +63,8 @@ the server will allow our client app to request whatever it needs to authenticat
 - in Server/server/settings.py -> DATABASES.default -> remove HOST and PORT
 - TODO: improve this, refactor
 - use the virtual environment!
+- make sure postgres is running: `sudo systemctl <status | start | stop> postgresql`
+- check tables: `psql -U postgres` -> https://neon.com/postgresql/postgresql-administration/postgresql-show-databases
 ```terminaloutput
     source venv/bin/activate
     [if necessary]: pip install <dep-name-here>
@@ -69,3 +72,6 @@ the server will allow our client app to request whatever it needs to authenticat
     python manage.py migrate
     python manage.py runserver 8080
 ```
+
+### Pgadmin in vevn
+See [this](https://gist.github.com/superjojo140/2a0221d517f356965371b3969f37b29f?permalink_comment_id=4005446#gistcomment-4005446)

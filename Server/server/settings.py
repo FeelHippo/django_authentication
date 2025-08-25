@@ -61,7 +61,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'server.urls'
-AUTH_USER_MODEL = 'server.CustomUser'
+AUTH_USER_MODEL = 'server.CustomUser' # https://learndjango.com/tutorials/django-best-practices-referencing-user-model
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',
     'django.contrib.auth.backends.ModelBackend',
@@ -104,8 +104,8 @@ DATABASES = {
         'NAME': 'auth',
         'USER': 'feelhippo',
         'PASSWORD': 'Filippo333',
-        'HOST': 'db',
-        'PORT': '5432',
+        'HOST': '', #  docker-compose -> db
+        'PORT': '', #  docker-compose -> 5432
     }
 }
 
